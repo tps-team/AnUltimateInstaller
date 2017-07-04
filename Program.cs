@@ -21,6 +21,7 @@ namespace SKProCH__Installer_1._
             Console.WriteLine("Создание директорий...");
             Directory.CreateDirectory(save_path);
             Directory.CreateDirectory(appdata_launcher_path);
+            Directory.CreateDirectory(appdata_launcher_path + "Temp");
 
             WebClient wc = new WebClient();
 
