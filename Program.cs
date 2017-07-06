@@ -22,6 +22,7 @@ namespace SKProCH__Installer_1._
             Directory.CreateDirectory(save_path);
             Directory.CreateDirectory(appdata_launcher_path);
             Directory.CreateDirectory(appdata_launcher_path + "Temp");
+            Directory.CreateDirectory(appdata_launcher_path + "Needed Mods");
 
             WebClient wc = new WebClient();
 
@@ -30,6 +31,7 @@ namespace SKProCH__Installer_1._
             string url = base_url + "Updater.exe"; // изменён способ представления переменной удалённого расположения файлов 
             string url1 = base_url + "Dont_Touch_This_EXE.exe"; // изменён способ представления переменной удалённого расположения файлов 
             string url2 = base_url + "DotNetZip.dll"; // изменён способ представления переменной удалённого расположения файлов 
+            string url3 = base_url + "L_Version.txt";
 
             string name = "Modpack Updater.exe";
             string name1 = "Dont Touch This EXE.exe";
@@ -39,12 +41,13 @@ namespace SKProCH__Installer_1._
             wc.DownloadFile(url1, save_path + name1);
             wc.DownloadFile(url2, save_path + name2);
 
+            wc.DownloadFile(url3, appdata_launcher_path + "L_Version.txt");
+
             Console.WriteLine("Завершено...");
 
             Console.WriteLine("Создание дополнительных файлов...");
 
-            File.Create(appdata_launcher_path + "M_Version.txt");
-            File.Create(appdata_launcher_path + "L_Version.txt");
+            File.Create(appdata_launcher_path + "M_Version.txt");            
             File.Create(appdata_launcher_path + "MCPath.txt");
 
             Console.WriteLine("Завершено...");
@@ -68,7 +71,19 @@ namespace SKProCH__Installer_1._
             System.Diagnostics.Process.Start(@"https://cdn.discordapp.com/attachments/236018668889309185/331019888443260928/unknown.png");
             Console.WriteLine(@"Откройте %appdata%\scproch_updater\MCLink.txt");
             Console.WriteLine("И введите туда путь до рабочей папки...");
-
+            /*
+            Console.WriteLine(base_url);
+            Console.WriteLine(save_path);
+            Console.WriteLine(appdata_path);
+            Console.WriteLine(appdata_launcher_path);
+            Console.WriteLine(url);
+            Console.WriteLine(url1);
+            Console.WriteLine(url2);
+            Console.WriteLine(url3);
+            Console.WriteLine(name);
+            Console.WriteLine(name1);
+            Console.WriteLine(name2);
+            */
             Console.Write("Установка завершена. Нажмите любую клавишу для завершения...");
 
             Console.ReadKey(true);
