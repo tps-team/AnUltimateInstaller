@@ -11,9 +11,9 @@ namespace SKProCH__Installer_1._
         public static void Main(string[] args)
         {
             string base_url = "ftp://updater:thisispassword@31.25.29.138/usb1_1/minecraft/DontTouchThisFolder/";
-            string save_path = @"C:\Program Files\SKProCH Updater\";
+            string save_path = @"C:\Program Files\SKProCH Lab\MC Updater\";
             string appdata_path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string appdata_launcher_path = appdata_path + @"\scproch_updater\";
+            string appdata_launcher_path = appdata_path + @"\SKProCH Lab\MC Updater\";
                        
             Console.CursorVisible = false;
 
@@ -40,7 +40,7 @@ namespace SKProCH__Installer_1._
             wc.DownloadFile(url, save_path + name);
             wc.DownloadFile(url1, save_path + name1);
             wc.DownloadFile(url2, save_path + name2);
-
+            wc.DownloadFile(base_url + "ForgeVersion.txt", appdata_launcher_path + @"Temp\ForgeVersion.txt");
             wc.DownloadFile(url3, appdata_launcher_path + "L_Version.txt");
 
             Console.WriteLine("Завершено...");
@@ -48,8 +48,6 @@ namespace SKProCH__Installer_1._
             Console.WriteLine("Создание дополнительных файлов...");
 
             File.Create(appdata_launcher_path + "M_Version.txt");            
-            File.Create(appdata_launcher_path + "MCPath.txt");
-
             Console.WriteLine("Завершено...");
 
             /*
@@ -66,12 +64,27 @@ namespace SKProCH__Installer_1._
             reg.SetValue(name, save_path + name);                                                           // приложения лаунчера
 
             Console.WriteLine("Установка завершена. Сейчас вы должны подготовить рабочую папку Minecraft'a.");
-            Console.WriteLine("Нажмите любую клавишу и в браузере откроется инструкция...");
+            Console.ForegroundColor = ConsoleColor.Green;
+            string new_l_v = File.ReadAllText(appdata_launcher_path + @"Temp\ForgeVErsion.txt");
+            Console.WriteLine("Для того, что бы правильно подготовить рабочую папку Minecraft создайте новый модпак в Curse(Twitch) или MultiMC. Установите Forge");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(new_l_v);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Далее зайдите в папку лаунчера, в Modpacks (Instances), в в папку созданного модпака, там, где находятся директории Mods и Config.");
+            Console.WriteLine("Скопируйте адрес данной папки... Нажмите ПКМ на название консоли, выберите <Изменить> и Вставить.");
+            Console.CursorVisible = true;
+            Console.ForegroundColor = ConsoleColor.Gray;
+            string MCPath = Console.ReadLine();
+            File.WriteAllText(appdata_launcher_path + "MCPath.txt", MCPath);
+            File.Delete(appdata_launcher_path + @"Temp\ForgeVersion.txt");
+            Console.WriteLine("Файл с путем к папке Minecraft'a находится тут: " + appdata_launcher_path + "MCPath.txt");
+            Console.WriteLine("Потом вы можете вручную изменить путь, открыв данный файл.");
+            
+            /*Console.WriteLine("Нажмите любую клавишу и в браузере откроется инструкция...");
             Console.ReadKey(true);
             System.Diagnostics.Process.Start(@"https://cdn.discordapp.com/attachments/236018668889309185/331019888443260928/unknown.png");
             Console.WriteLine(@"Откройте %appdata%\scproch_updater\MCLink.txt");
             Console.WriteLine("И введите туда путь до рабочей папки...");
-            /*
             Console.WriteLine(base_url);
             Console.WriteLine(save_path);
             Console.WriteLine(appdata_path);
@@ -85,7 +98,6 @@ namespace SKProCH__Installer_1._
             Console.WriteLine(name2);
             */
             Console.Write("Установка завершена. Нажмите любую клавишу для завершения...");
-
             Console.ReadKey(true);
         }      
     }

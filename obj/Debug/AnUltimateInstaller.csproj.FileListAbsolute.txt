@@ -12,3 +12,5 @@ D:\vs\Projects\AnUltimateInstaller\AnUltimateInstaller\obj\Debug\AnUltimateInsta
 D:\vs\Projects\AnUltimateInstaller\AnUltimateInstaller\obj\Debug\AnUltimateInstaller.Properties.Resources.resources
 D:\vs\Projects\AnUltimateInstaller\AnUltimateInstaller\obj\Debug\AnUltimateInstaller.csproj.GenerateResource.Cache
 D:\vs\Projects\AnUltimateInstaller\AnUltimateInstaller\obj\Debug\AnUltimateInstaller.csprojResolveAssemblyReference.cache
+C:\Users\SKProCH\Documents\Visual Studio 2017\Projects\AnUltimateInstaller\AnUltimateInstaller\obj\Debug\AnUltimateInstaller.Properties.Resources.resources
+C:\Users\SKProCH\Documents\Visual Studio 2017\Projects\AnUltimateInstaller\AnUltimateInstaller\obj\Debug\AnUltimateInstaller.csproj.GenerateResource.Cache
