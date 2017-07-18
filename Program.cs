@@ -2,7 +2,7 @@
 using System.IO;
 using System.Net;
 using Microsoft.Win32;
-
+using IWshRuntimeLibrary;
 
 namespace SKProCH__Installer_1._
 {
@@ -47,7 +47,7 @@ namespace SKProCH__Installer_1._
 
             Console.WriteLine("Создание дополнительных файлов...");
 
-            File.Create(appdata_launcher_path + "M_Version.txt");            
+            System.IO.File.Create(appdata_launcher_path + "M_Version.txt");            
             Console.WriteLine("Завершено...");
 
             /*
@@ -63,9 +63,20 @@ namespace SKProCH__Installer_1._
             reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\"); // за автозагрузку 
             reg.SetValue(name, save_path + name);                                                           // приложения лаунчера
 
+            Console.WriteLine("Завершено...\nСоздание ярлыков...");
+
+            WshShell shell = new WshShell();
+            string shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\MC Updater.lnk";
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
+            shortcut.Description = "Ярлык для автоматического обновления клиента!";
+            shortcut.TargetPath = save_path + @"Updater.exe";
+            shortcut.Save();
+
+            Console.WriteLine("Завершено...");
+
             Console.WriteLine("Установка завершена. Сейчас вы должны подготовить рабочую папку Minecraft'a.");
             Console.ForegroundColor = ConsoleColor.Green;
-            string new_l_v = File.ReadAllText(appdata_launcher_path + @"Temp\ForgeVErsion.txt");
+            string new_l_v = System.IO.File.ReadAllText(appdata_launcher_path + @"Temp\ForgeVErsion.txt");
             Console.WriteLine("Для того, что бы правильно подготовить рабочую папку Minecraft создайте новый модпак в Curse(Twitch) или MultiMC. Установите Forge");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(new_l_v);
@@ -75,8 +86,8 @@ namespace SKProCH__Installer_1._
             Console.CursorVisible = true;
             Console.ForegroundColor = ConsoleColor.Gray;
             string MCPath = Console.ReadLine();
-            File.WriteAllText(appdata_launcher_path + "MCPath.txt", MCPath);
-            File.Delete(appdata_launcher_path + @"Temp\ForgeVersion.txt");
+            System.IO.File.WriteAllText(appdata_launcher_path + "MCPath.txt", MCPath);
+            System.IO.File.Delete(appdata_launcher_path + @"Temp\ForgeVersion.txt");
             Console.WriteLine("Файл с путем к папке Minecraft'a находится тут: " + appdata_launcher_path + "MCPath.txt");
             Console.WriteLine("Потом вы можете вручную изменить путь, открыв данный файл.");
             
