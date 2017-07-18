@@ -42,6 +42,7 @@ namespace SKProCH__Installer_1._
             wc.DownloadFile(url2, save_path + name2);
             wc.DownloadFile(base_url + "ForgeVersion.txt", appdata_launcher_path + @"Temp\ForgeVersion.txt");
             wc.DownloadFile(url3, appdata_launcher_path + "L_Version.txt");
+            wc.DownloadFile(base_url + "serverlogo1.ico", save_path + "Icon.ico");
 
             Console.WriteLine("Завершено...");
 
@@ -70,6 +71,7 @@ namespace SKProCH__Installer_1._
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
             shortcut.Description = "Ярлык для автоматического обновления клиента!";
             shortcut.TargetPath = save_path + @"Updater.exe";
+            shortcut.IconLocation = save_path + "Icon.ico";
             shortcut.Save();
 
             Console.WriteLine("Завершено...");
