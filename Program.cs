@@ -70,11 +70,22 @@ namespace SKProCH__Installer_1._
             string shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\MC Updater.lnk";
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
             shortcut.Description = "Ярлык для автоматического обновления клиента!";
-            shortcut.TargetPath = save_path + @"Updater.exe";
+            shortcut.TargetPath = save_path + @"Modpack Updater.exe";
             shortcut.IconLocation = save_path + "Icon.ico";
             shortcut.Save();
 
             Console.WriteLine("Завершено...");
+            /*
+            string[] DriveList = Environment.GetLogicalDrives();
+            for (int i = 0; i < DriveList.Length; i++)
+                
+            {
+
+                Console.WriteLine(DriveList[i]);
+
+                
+            }
+            Console.ReadKey(true); */
 
             Console.WriteLine("Установка завершена. Сейчас вы должны подготовить рабочую папку Minecraft'a.");
             Console.ForegroundColor = ConsoleColor.Green;
